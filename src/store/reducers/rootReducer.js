@@ -6,7 +6,7 @@ import { firestoreReducer } from 'redux-firestore'
 const rootReducer = combineReducers({
     auth: authReducer,
     meme: memeReducer,
-    firestore: firestoreReducer
+    firestore: firestoreReducer // (2) sinking data from firebase to 'firestore' !!#
 }); 
 
 export default rootReducer;

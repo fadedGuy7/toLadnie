@@ -28,13 +28,14 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
     console.log(state);
     return {
-        memes: state.meme.memes       //rootReducers.js - meme => memeReducer - memes
+        memes: state.firestore.ordered.meme       // (3) managing data what we sinked !!#
     }
 }
 
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect([
-        { collection: 'projects' }
-    ])
+    firestoreConnect([ {
+        collection: 'meme' // (1) sink from !!#
+    } ])
 )(Dashboard);
+ 
