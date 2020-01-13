@@ -1,0 +1,24 @@
+html {
+  min-height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+}
+form {
+  padding: 20px;
+}
+input[type=text]:not(.browser-default):focus:not([read-only]),
+input[type=email]:not(.browser-default):focus:not([read-only]),
+input[type=password]:not(.browser-default):focus:not([read-only]),
+textarea:focus:not([read-only]) {
+  border-color: #ec407a;
+  box-shadow: none;
+}
+.navBar {
+  text-align: left;
+}
+
+.span {
+  padding: 1em;
+}
