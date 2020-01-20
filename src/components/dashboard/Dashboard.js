@@ -4,12 +4,15 @@ import Ad from './Ad';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-
+import { Redirect } from 'react-router-dom'
 
 class Dashboard extends Component {
      render() {
-         console.log(this.props);
-         const { memes } = this.props;  // zapisujemy stala memes jako propsa z memami  
+         
+         const { memes, auth } = this.props;  // zapisujemy stala memes jako propsa z memami, w auth trzyammy info o zalogowaniu 
+         if (!auth.uid) return <Redirect to='/zaloguj' />
+         console.log('all', memes);
+
          return(
              <div className='container dashboard'>
                  <div className='row'>
@@ -26,10 +29,10 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
-        memes: state.firestore.ordered.meme       // (3) managing data what we sinked !!#
-    }
+        memes: state.firestore.ordered.meme,       // (3) managing data what we sinked !!#
+        auth: state.firebase.auth                   // there we have got info about user authentication is it on or off
+    }       
 }
 
 export default compose(
@@ -37,5 +40,5 @@ export default compose(
     firestoreConnect([ {
         collection: 'meme' // (1) sink from !!#
     } ])
-)(Dashboard);
+)(Dashboard); 
  

@@ -1,9 +1,4 @@
 const initState = { 
-    memes: [
-        {id: '1', title: 'Dinosaur rex - fappin unvailable :(', meme: './img/dinosaur.png', alt: 'dino1'},
-        {id: '2', title: 'Dinosaur2  rex - fappin unvailable :(', meme: './img/dinosaur.png', alt: 'dino2'}
-
-    ]
 }
 
 const memeReducer = (state = initState, action) => {
@@ -12,7 +7,13 @@ const memeReducer = (state = initState, action) => {
             console.log('created meme', action.meme);
             return state;
         case 'CREATE_MEME_ERROR':
-            console.log('create meme error:', action.error);
+            console.log('create meme error: ', action.error);
+            return state;
+        case 'COMMENT_ADDED':
+            console.log('comment added', action);
+            return state;
+        case 'COMMENT_ERROR':
+            console.log('comment error: ', action.error);
             return state;
         default:
            return state;
