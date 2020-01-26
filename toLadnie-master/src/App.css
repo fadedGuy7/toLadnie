@@ -1,0 +1,86 @@
+html {
+  min-height: 100vh;
+}
+
+body {
+  font-family: sans-serif;
+  min-height: 100vh;
+}
+form {
+  padding: 20px;
+  margin: 1em;
+}
+input[type=text]:not(.browser-default):focus:not([read-only]),
+input[type=email]:not(.browser-default):focus:not([read-only]),
+input[type=file]:not(.browser-default):focus:not([read-only]),
+input[type=chips]:not(.browser-default):focus:not([read-only]),
+input[type=password]:not(.browser-default):focus:not([read-only]),
+textarea:focus:not([read-only]) {
+  border-color: #ec407a;
+  box-shadow: none;
+}
+.navBar {
+  text-align: left;
+}
+
+.span {
+  padding: 1em;
+}
+
+.loading {
+  width: 50vw;
+  margin: auto;
+}
+
+.screen {
+  height: 100vh;
+}
+
+.meme {
+  border-bottom-left-radius: 1%;
+  border-bottom-right-radius: 1%;
+  margin-bottom: 0.5em;
+}
+
+.memeTitle {
+  font-weight: 600;
+  font-size: 1.1em;
+  padding: 0.1em 1em;
+  
+}
+
+.memeInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info {
+  padding: 0.1em;
+  margin: 0px 1em;
+  font: 0.8em;
+  font-style: italic;
+}
+
+.memeContent {
+  border-bottom-left-radius: 1%;
+  border-bottom-right-radius: 1%;
+
+}
+
+.memeImg {
+  max-width: 100%;
+  margin-bottom: 0.1em;
+}
+
+.commentForm {
+  padding: 0 1em;
+  width: 100%
+}
+
+.comments {
+  padding: 0.5em 3em 0.5em 1em;
+}
+
+.test {
+  background-color: #ec407a;
+}

@@ -8,10 +8,10 @@ import { Redirect } from 'react-router-dom'
 
 class Dashboard extends Component {
      render() {
+    console.log('dashboard render');
          
-         const { memes, auth } = this.props;  // zapisujemy stala memes jako propsa z memami, w auth trzyammy info o zalogowaniu 
+         const { memes, auth } = this.props;  // zapisujemy stala memes jako propsa z memami, w auth trzymamy info o zalogowaniu 
          if (!auth.uid) return <Redirect to='/zaloguj' />
-         console.log('all', memes);
 
          return(
              <div className='container dashboard'>

@@ -70,8 +70,6 @@ export class CreateMeme extends Component {
         const { auth } = this.props;
         if (!auth.uid) return <Redirect to='/zaloguj' />
 
-       // const chipOptions = ;
-
         const LoadingStatus = () => {
             if(this.state.memeStatus === 1) {
                            return <Col s={4}>

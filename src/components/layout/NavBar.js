@@ -5,12 +5,12 @@ import SignedOutOpt from './SignedOutOpt';
 import { connect } from 'react-redux'
 
 const NavBar = (props) => {
-    const { auth, profile } = props; // takes state !!$
+    const { auth, profile } = props; // takes states !!$
     const links = auth.uid ? <SignedInOpt profile={profile} /> : <SignedOutOpt />
     return(
-        <nav className='nav-wrapper grey darken-3'>
+        <nav className='nav-wrapper blueGrey'>
             <div className='container'>
-                    <Link to='/' className='brand-logo navBar'>to*Ladnie</Link>
+                    <Link to='/' className='brand-logo text'>to*Ladnie</Link>
                 
                 { links }
 

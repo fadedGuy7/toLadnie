@@ -9,11 +9,14 @@ const memeReducer = (state = initState, action) => {
         case 'CREATE_MEME_ERROR':
             console.log('create meme error: ', action.error);
             return state;
-        case 'COMMENT_ADDED':
-            console.log('comment added', action);
+        case 'LIKED':
+            console.log('like added: ', action);
             return state;
-        case 'COMMENT_ERROR':
-            console.log('comment error: ', action.error);
+        case 'LIKED_ALREADY':
+            console.log('liked already: ', action);
+            return state;
+        case 'LIKE_ERROR':
+            console.log('like error: ', action.error);
             return state;
         default:
            return state;

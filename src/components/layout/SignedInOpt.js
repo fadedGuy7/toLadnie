@@ -7,10 +7,10 @@ const SignedInOpt = (props) => {
     return(
         <ul className='right hide-on-med-and-down'>
             <li>
-                <NavLink to='/dodaj'>Dodaj material</NavLink>
+                <NavLink to='/dodaj' className='dBrownText'>Dodaj material</NavLink>
             </li>
             <li>
-                <NavLink to='/' onClick={props.signOut}>Wyloguj</NavLink>
+                <NavLink to='/' className='dBrownText' onClick={props.signOut}>Wyloguj</NavLink>
             </li>
             <li>
                 <NavLink to='/' className='btn btn-floating green lighten-1'>{props.profile.initials}</NavLink>

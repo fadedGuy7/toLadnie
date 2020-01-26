@@ -1,31 +1,94 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { likeMeme } from '../../store/actions/memeActions'
+import { Link } from 'react-router-dom'
+import LikeBarMeme from './LikeBarMeme'
 
 const showUp = ( array ) => {
     let result = '';
-    array.map((el) => {
+    array && array.map((el) => {
         result += '#' + el.tag + ' '
         return result
     })
     return result;
 }
 
-const Meme = ({ meme }) => {
-    return(
-        <div className='meme m8 s12 transparent z-depth-1'>
-            <div className='grey darken-2 white-text memeTitle'>{meme.title}</div>
-            <div className='memeInfo grey darken-1 white-text text-darken2 z-depth-1'>
-                <p className='info'>{meme.type}</p>
-                <p className='info'>{showUp(meme.hashTag)}</p>
-            </div>
-            <div className='grey darken-2 memeContent'>
-                
-                <img src={meme.meme} alt={meme.title} className='responsive-img z-depth-0' />
-                
-            </div>
-        </div>
-    );
+const Title = (props) =>{
+    console.log('title', props);
+    if(props.meme.id) {
+        return (
+            <Link to={'/meme/' + props.meme.id} key={'linktitle' + props.meme.id}>
+                {props.meme.title}
+            </Link> 
+        )
+    } else {
+        return (
+            <span>
+                {props.meme.title}
+            </span>
+        );
+    }
 }
 
-export default Meme;
+const Body = (props) => {
+    if(props.meme.id) {
+        return (
+            <Link to={'/meme/' + props.meme.id} key={'link' + props.meme.id}>
+                <img src={props.meme.meme} alt={props.meme.title} className='responsive-img z-depth-0 memeImg' />
+            </Link>
+        )
+    } else {
+        return (
+            <span>
+                <img src={props.meme.meme} alt={props.meme.title} className='responsive-img z-depth-0 memeImg' />
+            </span>
+        );
+    }
+}
+
+class Meme extends Component {
+
+    render() {
+        const { votes } = this.props;
+        const id = this.props.id ? this.props.id : this.props.meme.id;
+        return(
+            <div className='meme blueGrey text m8 s12 z-depth-1'>
+                <div className='transparent text memeTitle'>
+                    <Title {...this.props}/>
+                </div>
+                <div className='toSides blueGrey dBrownText darken-1 memeInfo'>
+                    <p className='info'>{this.props.meme.type}</p>
+                    <p className='info'>{showUp(this.props.meme.hashTag)}</p>
+                </div>
+                <div className='memeContent'>
+                    <Body {...this.props}/>
+                </div>
+                 <div className='transparent underMeme'>
+                    <LikeBarMeme meme={id} votes={votes} likeMeme={this.props.likeMeme}/>
+                 </div>
+            </div>
+        );
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        likeMeme: (id) => dispatch(likeMeme(id))
+    }
+}
+
+const mapStateToProps = (state, props) => {  
+    const id = props.meme.id ? props.meme.id : props.id; 
+    console.log('w state', props) 
+
+    const votes = state.firestore.ordered.meme;
+    return {
+        id: id,
+        votes: votes
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Meme);
 
 

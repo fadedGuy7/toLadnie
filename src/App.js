@@ -14,7 +14,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <NavBar />
+        <NavBar /> 
         <Switch >
           <Route exact path='/' component={Dashboard} />
           <Route path='/meme/:id' component={MemeDetails} /> 

@@ -1,25 +1,24 @@
 import React, { Component } from 'react'
 import { TextInput } from 'react-materialize'
-import { addComment } from '../../store/actions/memeActions'
+import { addComment } from '../../store/actions/commentActions'
 import { connect } from 'react-redux'
 
 
 export class AddComment extends Component {
     state = {
         comment: '',
+        memeId: this.props.id
     }
 
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
-        }, () => {
-            console.log(this.state);
         })
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addComment(this.props.id, this.state)
+        this.props.addComment(this.state)
     }
     render() {
         return(
@@ -27,13 +26,13 @@ export class AddComment extends Component {
                 <TextInput onChange={this.handleChange} placeholder='HAHA Kurła dobre..' id='comment' />
                 <button className='btn pink z-depth-1'>Dodaj komentarz</button>
             </form>
-        );
+        ); 
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addComment: (id, comment) => dispatch(addComment(id, comment))
+        addComment: (comment) => dispatch(addComment(comment))
     }
 }
 
