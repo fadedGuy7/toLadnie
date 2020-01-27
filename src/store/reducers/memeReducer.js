@@ -12,11 +12,20 @@ const memeReducer = (state = initState, action) => {
         case 'LIKED':
             console.log('like added: ', action);
             return state;
-        case 'LIKED_ALREADY':
+ /*       case 'LIKED_ALREADY':
             console.log('liked already: ', action);
-            return state;
+            return state; */
         case 'LIKE_ERROR':
             console.log('like error: ', action.error);
+            return state;
+        case 'DISLIKED':
+            console.log('dislike added: ', action);
+            return state;
+        case 'DISLIKE_ERROR':
+            console.log('dislike error: ', action.error);
+            return state;
+        case 'CREATE_LIKE_DISLIKE_ERROR':
+            console.log('error during creation empty like and dislike', action.error);
             return state;
         default:
            return state;

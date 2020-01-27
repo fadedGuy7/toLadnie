@@ -5,10 +5,16 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import AddComment from './AddComment'
-import CommentsList from './CommentsList';
+import CommentsList from './CommentsList'
+
+//import LoadingSpinner from 'components/LoadingSpinner'
+//import { isLoaded } from 'react-redux-firebase'
+
+
 
 const MemeDetails = (props) => {
     const { meme, auth, comments, id, votes} = props;   // loading from mapstateToProsps \/
+
     if (!auth.uid) return <Redirect to='/' />
     if (meme && comments !== undefined) {
         return(
@@ -30,26 +36,26 @@ const MemeDetails = (props) => {
 }
 
 const mapStateToProps = (state, props) => {
+    console.log('state test', props);
         const id = props.match.params.id;
-        const memes = state.firestore.data.meme;
-        const meme = memes ? memes[id] : null;
-        const comments = meme ? memes[id].comments : null;
-        const votes = meme ? memes[id].votes : null;
+        const data = state.firestore.data;
+        const ordered = state.firestore.ordered;
+        const meme = data.meme ? data.meme[id] : null;
+        const comments = ordered.comments ? ordered.comments : null;
+        const votes = ordered.votes ? ordered.votes : null;
         return {
             id: id,
             meme: meme,
             auth: state.firebase.auth,
             comments: comments,
-            votes: votes
+            votes: votes,
     }
 }
 
 export default compose(
-    connect(mapStateToProps),
     firestoreConnect((props) => [
-        { collection: 'meme' },
-        { collection: 'meme', doc: props.match.params.id, subcollections: [{ collection: 'comments' }] },
-        { collection: 'meme', doc: props.match.params.id, subcollections: [{ collection: 'votes', doc: 'likes' }] },
-
-    ])
+        { collection: 'meme', orderBy: 'postDate'},
+        { collection: 'meme', doc: props.match.params.id, subcollections: [{ collection: 'comments' }], storeAs: 'comments', orderBy: 'commentDate' },
+        { collection: 'meme', doc: props.match.params.id, subcollections: [{ collection: 'votes', doc: 'likes' }], storeAs: 'votes'},
+    ]), connect(mapStateToProps)
 )(MemeDetails); 

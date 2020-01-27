@@ -2,13 +2,12 @@ import React from 'react'
 import Comment from './Comment'
 
 const CommentsList = ({ comments }) => {
-    if(comments) {
-        const entries = Object.entries(comments);
-        return (
-            entries.map(val => {
+    console.log('komentarze', comments)
+    if(comments && comments.length > 0) {
+        return(
+            comments.map(comment => {
                 return (
-                    <Comment key={val[0]} comment={val[1]} />
-                    
+                    <Comment key={comment.id} comment={comment} />
                 );
             })
         );

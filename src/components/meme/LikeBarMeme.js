@@ -2,9 +2,17 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 const LikeBarMeme = (props) =>{
-    const { liked, votes } = props;
+    const { liked, likes} = props;
     if(liked && liked.some(val => val === props.meme)) {
-        console.log('ostateczny', votes);
+        console.log('votes w barze', likes);
+        if(likes) {
+            return(
+                <div className='likeButtonsContainer'>
+                    <div className='liked' onClick={() => props.likeMeme(props.meme)}>{likes.length}</div>
+                    <div className='likeButtons dislike text'>-</div>
+                </div>  
+            );
+        }
         return (
             <div className='likeButtonsContainer text'>
                  Lubisz to lubisz x                                  {/* move function to the backend asap */}
@@ -22,8 +30,10 @@ const LikeBarMeme = (props) =>{
 }
 
 const mapStateToProps = (state) => {
+    console.log('state w barze', state)
     return {
         liked: state.firebase.profile.liked,
+        likes: state.firestore.ordered.votes
     }
 }
 

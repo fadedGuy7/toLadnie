@@ -38,7 +38,7 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([ {
-        collection: 'meme' // (1) sink from !!#
+        collection: 'meme' , orderBy: ['postDate', 'desc']// (1) sink from !!#
     } ])
 )(Dashboard); 
  

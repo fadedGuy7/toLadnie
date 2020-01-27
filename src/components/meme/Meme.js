@@ -14,7 +14,6 @@ const showUp = ( array ) => {
 }
 
 const Title = (props) =>{
-    console.log('title', props);
     if(props.meme.id) {
         return (
             <Link to={'/meme/' + props.meme.id} key={'linktitle' + props.meme.id}>
@@ -79,7 +78,6 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state, props) => {  
     const id = props.meme.id ? props.meme.id : props.id; 
-    console.log('w state', props) 
 
     const votes = state.firestore.ordered.meme;
     return {
