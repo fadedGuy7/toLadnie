@@ -64,7 +64,7 @@ class Meme extends Component {
                     <Body {...this.props}/>
                 </div>
                  <div className='transparent underMeme'>
-                    <LikeBarMeme meme={id} votes={votes} likeMeme={this.props.likeMeme} dislikeMeme={this.props.dislikeMeme} />
+                    <LikeBarMeme meme={id} likeMeme={this.props.likeMeme} dislikeMeme={this.props.dislikeMeme} />
                  </div>
             </div>
         );
