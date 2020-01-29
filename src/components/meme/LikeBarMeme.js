@@ -5,10 +5,10 @@ import { compose } from 'redux'
 
 const LikeBarMeme = (props) =>{
     const { liked, votes, disliked } = props;
-    console.log('likeBarMeme render');
+    console.log('likeBarMeme render for props: ', props);
     if(liked && liked.some(val => val === props.meme)) {
         if(votes) {
-            return( //return if like clicked
+            return( //return if like cl4icked
                 <div className='likeButtonsContainer'>
                     <div className='likeButtons liked' onClick={() => props.likeMeme(props.meme)}>{votes.likes.liked.length}</div>
                     <div className='likeButtons likedDislike'>{votes.dislikes.disliked.length}</div>

@@ -62,7 +62,7 @@ class Meme extends Component {
                 </div>
                 <div className='memeContent'>
                     <Body {...this.props}/>
-                </div>
+                </div> 
                  <div className='transparent underMeme'>
                     <LikeBarMeme meme={id} likeMeme={this.props.likeMeme} dislikeMeme={this.props.dislikeMeme} />
                  </div>
@@ -80,10 +80,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state, props) => {  
     const id = props.meme.id ? props.meme.id : props.id;
-    const votes = state.firestore.ordered.meme;
     return {
-        id: id,
-        votes: votes
+        id: id
     }
 }
 

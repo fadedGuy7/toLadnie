@@ -4,27 +4,20 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
-import AddComment from './AddComment'
-import CommentsList from './CommentsList'
+
+import Comments from './Comments'
 
 
 const MemeDetails = (props) => {
-    const { meme, auth, comments, id, votes} = props;
+    const { meme, auth, comments, id} = props;
     console.log('MemeDetails RENDER');
 
     if (!auth.uid) return <Redirect to='/' />
     if (meme && comments !== undefined) {
         return(
         <div className='container section'>
-            <Meme meme={meme} id={id} votes={votes}/>
-            <div className='card z-depth-0 grey darken-2'>
-                <span className='white-text memeTitle'>Komentarze dla meme</span>
-                <div className='grey lighten-2 green-text comments'>
-                    <CommentsList comments={comments} />
-                    <AddComment id={id} />
-                </div>
-
-            </div>
+            <Meme meme={meme} id={id}/> 
+            <Comments meme={meme} comments={comments} />
         </div>
         );
     } else {
@@ -38,13 +31,11 @@ const mapStateToProps = (state, props) => {
         const ordered = state.firestore.ordered;
         const meme = data.meme ? data.meme[id] : null;
         const comments = ordered.comments ? ordered.comments : null;
-        const votes = data.votes ? data.votes : null;
         return {
             id: id,
             meme: meme,
             auth: state.firebase.auth,
-            comments: comments,
-            votes: votes,
+            comments: comments
     }
 }
 
