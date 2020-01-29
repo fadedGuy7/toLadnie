@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/toLadnie/static/css/main.6c27b8a2.chunk.css",
+    "main.js": "/toLadnie/static/js/main.3f800739.chunk.js",
+    "main.js.map": "/toLadnie/static/js/main.3f800739.chunk.js.map",
+    "runtime-main.js": "/toLadnie/static/js/runtime-main.e1ba3e9f.js",
+    "runtime-main.js.map": "/toLadnie/static/js/runtime-main.e1ba3e9f.js.map",
+    "static/css/2.d88a60dc.chunk.css": "/toLadnie/static/css/2.d88a60dc.chunk.css",
+    "static/js/2.b4c875d5.chunk.js": "/toLadnie/static/js/2.b4c875d5.chunk.js",
+    "static/js/2.b4c875d5.chunk.js.map": "/toLadnie/static/js/2.b4c875d5.chunk.js.map",
+    "index.html": "/toLadnie/index.html",
+    "precache-manifest.9013a4a41fa02d5e2201b3cca057c4d2.js": "/toLadnie/precache-manifest.9013a4a41fa02d5e2201b3cca057c4d2.js",
+    "service-worker.js": "/toLadnie/service-worker.js",
+    "static/css/2.d88a60dc.chunk.css.map": "/toLadnie/static/css/2.d88a60dc.chunk.css.map",
+    "static/css/main.6c27b8a2.chunk.css.map": "/toLadnie/static/css/main.6c27b8a2.chunk.css.map",
+    "static/js/2.b4c875d5.chunk.js.LICENSE": "/toLadnie/static/js/2.b4c875d5.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e1ba3e9f.js",
+    "static/css/2.d88a60dc.chunk.css",
+    "static/js/2.b4c875d5.chunk.js",
+    "static/css/main.6c27b8a2.chunk.css",
+    "static/js/main.3f800739.chunk.js"
+  ]
+}
