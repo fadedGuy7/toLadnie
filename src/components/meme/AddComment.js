@@ -18,6 +18,7 @@ export class AddComment extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        console.log('state', this.props)
         this.props.addComment(this.state)
     }
     render() {

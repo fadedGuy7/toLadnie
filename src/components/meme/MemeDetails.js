@@ -11,13 +11,14 @@ import Comments from './Comments'
 const MemeDetails = (props) => {
     const { meme, auth, comments, id} = props;
     console.log('MemeDetails RENDER');
+    console.log('meme details :', meme, id)
 
     if (!auth.uid) return <Redirect to='/' />
     if (meme && comments !== undefined) {
         return(
         <div className='container section'>
             <Meme meme={meme} id={id}/> 
-            <Comments meme={meme} comments={comments} />
+            <Comments id={id} comments={comments} />
         </div>
         );
     } else {

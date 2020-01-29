@@ -48,7 +48,6 @@ const Body = (props) => {
 class Meme extends Component {
 
     render() {
-        const { votes } = this.props;
         const id = this.props.id ? this.props.id : this.props.meme.id;
         console.log('RENDER MEME');
         return(

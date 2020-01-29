@@ -3,6 +3,7 @@ export const addComment = ( comment ) => {
         const firestore = getFirestore();
         const profile = getState().firebase.profile; // get info about user
         const authId = getState().firebase.auth.uid; // and his id
+        console.log('add comment : ', comment);
 
         firestore.collection('meme').doc(comment.memeId).collection('comments').add({
             ...comment,

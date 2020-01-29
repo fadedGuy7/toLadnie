@@ -180,7 +180,10 @@ img {
 }
 
 .time{
-  font-size: .9em
+  display: flex;
+  font-size: .6em !important;
+  line-height: 2.2em;
+  align-items: flex-end;
 }
 
 .commentList {
