@@ -179,14 +179,18 @@ img {
   width: 3em;
   transition: all 0.5s ease 0s;
   font-size: 1em;
-}
-.like {
   text-align: center;
+}
+
+.like {
   border-radius: 10px 0 0 10px;
 }
 .liked {
   color: #0A733B !important;
   border-color: #0A733B !important;
+}
+.likedDislike {
+  color: #730B00 !important;
 }
 .like:hover {
   color: #0A733B !important;
@@ -195,11 +199,13 @@ img {
 }
 .dislike {
   border-radius: 0 10px 10px 0;
-  text-align: center;
 }
 .disliked {
   color: #730B00 !important;
   border-color: #730B00 !important;
+}
+.dislikedLike {
+  color: #0A733B !important;
 }
 .dislike:hover {
   color: #730B00 !important;

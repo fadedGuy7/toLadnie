@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { likeMeme } from '../../store/actions/memeActions'
+import { likeMeme, dislikeMeme } from '../../store/actions/memeActions'
 import { Link } from 'react-router-dom'
 import LikeBarMeme from './LikeBarMeme'
 
@@ -50,6 +50,7 @@ class Meme extends Component {
     render() {
         const { votes } = this.props;
         const id = this.props.id ? this.props.id : this.props.meme.id;
+        console.log('RENDER MEME');
         return(
             <div className='meme blueGrey text m8 s12 z-depth-1'>
                 <div className='transparent text memeTitle'>
@@ -63,7 +64,7 @@ class Meme extends Component {
                     <Body {...this.props}/>
                 </div>
                  <div className='transparent underMeme'>
-                    <LikeBarMeme meme={id} votes={votes} likeMeme={this.props.likeMeme}/>
+                    <LikeBarMeme meme={id} votes={votes} likeMeme={this.props.likeMeme} dislikeMeme={this.props.dislikeMeme} />
                  </div>
             </div>
         );
@@ -72,13 +73,13 @@ class Meme extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        likeMeme: (id) => dispatch(likeMeme(id))
+        likeMeme: (id) => dispatch(likeMeme(id)),
+        dislikeMeme: (id) => dispatch(dislikeMeme(id))
     }
 }
 
 const mapStateToProps = (state, props) => {  
-    const id = props.meme.id ? props.meme.id : props.id; 
-
+    const id = props.meme.id ? props.meme.id : props.id;
     const votes = state.firestore.ordered.meme;
     return {
         id: id,

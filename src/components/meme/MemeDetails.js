@@ -7,13 +7,10 @@ import { Redirect } from 'react-router-dom'
 import AddComment from './AddComment'
 import CommentsList from './CommentsList'
 
-//import LoadingSpinner from 'components/LoadingSpinner'
-//import { isLoaded } from 'react-redux-firebase'
-
-
 
 const MemeDetails = (props) => {
     const { meme, auth, comments, id, votes} = props;   // loading from mapstateToProsps \/
+    console.log('MemeDetails RENDER');
 
     if (!auth.uid) return <Redirect to='/' />
     if (meme && comments !== undefined) {
@@ -36,13 +33,12 @@ const MemeDetails = (props) => {
 }
 
 const mapStateToProps = (state, props) => {
-    console.log('state test', props);
         const id = props.match.params.id;
         const data = state.firestore.data;
         const ordered = state.firestore.ordered;
         const meme = data.meme ? data.meme[id] : null;
         const comments = ordered.comments ? ordered.comments : null;
-        const votes = ordered.votes ? ordered.votes : null;
+        const votes = data.votes ? data.votes : null;
         return {
             id: id,
             meme: meme,
@@ -56,6 +52,6 @@ export default compose(
     firestoreConnect((props) => [
         { collection: 'meme', orderBy: 'postDate'},
         { collection: 'meme', doc: props.match.params.id, subcollections: [{ collection: 'comments' }], storeAs: 'comments', orderBy: 'commentDate' },
-        { collection: 'meme', doc: props.match.params.id, subcollections: [{ collection: 'votes', doc: 'likes' }], storeAs: 'votes'},
+        { collection: 'meme', doc: props.match.params.id, subcollections: [{ collection: 'votes' }], storeAs: 'votes'},
     ]), connect(mapStateToProps)
 )(MemeDetails); 

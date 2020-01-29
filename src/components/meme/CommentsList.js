@@ -2,7 +2,7 @@ import React from 'react'
 import Comment from './Comment'
 
 const CommentsList = ({ comments }) => {
-    console.log('komentarze', comments)
+    console.log('CommentsList render');
     if(comments && comments.length > 0) {
         return(
             comments.map(comment => {
