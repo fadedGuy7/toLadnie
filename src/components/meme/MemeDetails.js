@@ -42,7 +42,8 @@ const mapStateToProps = (state, props) => {
 
 export default compose(
     firestoreConnect((props) => [
-        { collection: 'meme', orderBy: 'postDate'},
+        { collection: 'meme' , orderBy: ['postDate', 'desc']},
         { collection: 'meme', doc: props.match.params.id, subcollections: [{ collection: 'comments' }], storeAs: 'comments', orderBy: 'commentDate' },
+        
     ]), connect(mapStateToProps)
 )(MemeDetails); 
