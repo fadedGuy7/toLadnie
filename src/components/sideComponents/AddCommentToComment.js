@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { TextInput } from 'react-materialize'
-import { addComment } from '../../store/actions/commentActions'
+import { addCommentToComment } from '../../store/actions/commentActions'
 import { connect } from 'react-redux'
 
 
-export class AddComment extends Component {
+export class AddCommentToComment extends Component {
     state = {
         comment: '',
         memeId: this.props.id,
-        toComment: this.props.toComment
+        commentId: this.props.commentId
     }
 
     handleChange = (e) => {
@@ -19,8 +19,7 @@ export class AddComment extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log('state', this.props)
-        this.props.addComment(this.state)
+        this.props.addCommentToComment(this.state);
         this.setState({
             comment: ''
         })
@@ -28,7 +27,7 @@ export class AddComment extends Component {
     render() {
         return(
             <form onSubmit={this.handleSubmit} className='commentForm s12 m12 l12 xl12'>
-                <TextInput onChange={this.handleChange} placeholder='HAHA Kurła dobre..' 
+                <TextInput onChange={this.handleChange} placeholder='A więc..' 
                            value={this.state.comment} id='comment' className='nBlueText'/>
                 <button className='btn dBrown z-depth-1'>Dodaj komentarz</button>
             </form>
@@ -38,8 +37,8 @@ export class AddComment extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addComment: (comment) => dispatch(addComment(comment))
+        addCommentToComment: (comment) => dispatch(addCommentToComment(comment)),
     }
 }
 
-export default connect(null, mapDispatchToProps)(AddComment);
+export default connect(null, mapDispatchToProps)(AddCommentToComment);

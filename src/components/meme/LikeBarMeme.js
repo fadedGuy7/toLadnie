@@ -1,68 +1,51 @@
 import React from 'react'
-import { connect, useSelector } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux'
-import { isLoaded } from 'react-redux-firebase'
+import { connect } from 'react-redux'
 
 
 const LikeBarMeme = (props) =>{
-        const votes = useSelector(state => state.firestore.data.votes);
-        if(isLoaded(votes)){
-            const { liked, disliked } = props;
-            console.log('likeBarMeme render for props: ', props);
-            if(liked && liked.some(val => val === props.meme)) {
-                if(votes) {
-                    return( //return if like cl4icked
-                        <div className='likeButtonsContainer'>
-                            <div className='likeButtons liked' onClick={() => props.likeMeme(props.meme)}>{votes.likes.liked.length}</div>
-                            <div className='likeButtons likedDislike'>{votes.dislikes.disliked.length}</div>
-                        </div>  
-                    );
-                }
-                return (
-                    <div className='likeButtonsContainer text'>
-                         Lubisz to lubisz                                  {/* move function to the backend asap */}
-                    </div>
-                );
-            } else if (disliked && disliked.some(val => val === props.meme)) {
-                if(votes) {
-                    return( // return after dislike meme
-                        <div className='likeButtonsContainer'>
-                            <div className='likeButtons dislikedLike'>{votes.likes.liked.length}</div>
-                            <div className='likeButtons disliked' onClick={() => props.dislikeMeme(props.meme)}>{votes.dislikes.disliked.length}</div>
-                        </div>  
-                    );
-                }
-                return (
-                    <div className='likeButtonsContainer text'>
-                         Oj nie lubisz                         {/* move function to the backend asap */}
-                    </div>
-                );
-            } else {
-                return(
-                    <div className='likeButtonsContainer'>
-                        <div className='likeButtons like text' onClick={() => props.likeMeme(props.meme)}>+</div>
-                        <div className='likeButtons dislike text' onClick={() => props.dislikeMeme(props.meme)}>-</div>
-                    </div>  
-                );
-            }
-        } else {
-            return null;
-        }
-    }
+        const { liked, disliked, data } = props;
+        let likes = data.meme[props.id].likes;
+        let dislikes = data.meme[props.id].dislikes;
+        console.log('LikeBarMeme render')
+        return(
+            <div className='likeButtonsContainer'>
+                {(likes && liked && liked.some(val => val === props.id)) || (likes && disliked && disliked.some(val => val === props.id)) ? ( 
+                    liked.some(val => val === props.id) ? (
+                        <React.Fragment>
+                            <div className='likeButtons liked' onClick={() => props.likeMeme(props.id)}>
+                                {likes.length}
+                            </div>                                               
+                            <div className='likeButtons likedDislike'>
+                                {dislikes.length}
+                            </div>
+                        </React.Fragment>
+                    ) : (
+                        <React.Fragment>
+                            <div className='likeButtons dislikedLike'>
+                                {likes.length}
+                            </div>
+                            <div className='likeButtons disliked' onClick={() => props.dislikeMeme(props.id)}>
+                                {dislikes.length}
+                            </div>
+                        </React.Fragment>
+                    )
+                ) : (
+                    <>
+                    <div className='likeButtons like text' onClick={() => props.likeMeme(props.id)}>+</div>
+                    <div className='likeButtons dislike text' onClick={() => props.dislikeMeme(props.id)}>-</div>
+                    </>
+                )}
 
-const mapStateToProps = (state) => {
+            </div>
+        );
+}
+
+const mapStateToProps = (state, props) => {
     return {
         liked: state.firebase.profile.liked,
         disliked: state.firebase.profile.disliked,
-        votes: state.firestore.data.votes
+        data: state.firestore.data
     }
 }
 
-//export default connect(mapStateToProps)(LikeBarMeme)
-
-export default compose(
-    firestoreConnect((props) => [
-        { collection: 'meme', doc: props.meme, subcollections: [{ collection: 'votes' }], storeAs: 'votes'},
-    ]), connect(mapStateToProps))(LikeBarMeme); 
-
+export default connect(mapStateToProps)(LikeBarMeme)

@@ -8,16 +8,11 @@ export const createMeme = (meme) => {
             authorFirstName: profile.firstName,
             authorLastName: profile.lastName,
             authorId: authId,
-            postDate: new Date()
+            postDate: new Date(),
+            likes: [],
+            dislikes: []
         }).then((result) => {
-            let id = result._key.path.segments[1];
-            const like = firestore.collection('meme').doc(id).collection('votes').doc('likes').set({'liked': []});
-            const dislike = firestore.collection('meme').doc(id).collection('votes').doc('dislikes').set({'disliked': []});
-            Promise.all([like, dislike]).then(() => {
                 dispatch({ type: 'CREATE_MEME', meme})
-            }).catch((error) => {
-                dispatch({ type: 'CREATE_LIKE_DISLIKE_ERROR', error})
-            })
         }).catch((error) => {
             dispatch({ type: 'CREATE_MEME_ERROR', error})
         })
@@ -28,10 +23,12 @@ const likeMeme = (id) => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
         const authId = getState().firebase.auth.uid;
-        const votes = getState().firestore.data.votes.likes;
-        if(votes.liked.some(val => val === authId)) {
-            firestore.collection('meme').doc(id).collection('votes').doc('likes').update({
-                liked : firestore.FieldValue.arrayRemove(authId)
+        const votes = getState().firestore.data.meme[id];
+        console.log(votes)
+
+        if(votes.likes.some(val => val === authId)) {
+            firestore.collection('meme').doc(id).update({
+                likes : firestore.FieldValue.arrayRemove(authId)
             })
             .then(() => {
                 firestore.collection('users').doc(authId).update({
@@ -45,8 +42,8 @@ const likeMeme = (id) => {
                 dispatch({ type: 'UNLIKE_ERROR', error})
             })
         } else {
-            firestore.collection('meme').doc(id).collection('votes').doc('likes').update({
-                liked : firestore.FieldValue.arrayUnion(authId) //array update
+            firestore.collection('meme').doc(id).update({
+                likes : firestore.FieldValue.arrayUnion(authId) //array update
             })
             .then(() => {
                 firestore.collection('users').doc(authId).update({
@@ -66,11 +63,11 @@ const dislikeMeme = (id) => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
         const authId = getState().firebase.auth.uid;
-        const votes = getState().firestore.data.votes.dislikes;
+        const votes = getState().firestore.data.meme[id];
 
-        if(votes.disliked.some(val => val === authId)) {
-            firestore.collection('meme').doc(id).collection('votes').doc('dislikes').update({
-                disliked : firestore.FieldValue.arrayRemove(authId)
+        if(votes.dislikes.some(val => val === authId)) {
+            firestore.collection('meme').doc(id).update({
+                dislikes : firestore.FieldValue.arrayRemove(authId)
             })
             .then(() => {
                 firestore.collection('users').doc(authId).update({
@@ -84,8 +81,8 @@ const dislikeMeme = (id) => {
                 dispatch({ type: 'UNDISLIKE_ERROR', error})
             })
         } else {       
-            firestore.collection('meme').doc(id).collection('votes').doc('dislikes').update({
-                disliked : firestore.FieldValue.arrayUnion(authId) //array update
+            firestore.collection('meme').doc(id).update({
+                dislikes : firestore.FieldValue.arrayUnion(authId) //array update
             })
             .then(() => {
                 firestore.collection('users').doc(authId).update({

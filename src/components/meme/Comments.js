@@ -8,7 +8,7 @@ const Comments = (props) => {
                 <div className='commentTitle blueGrey'>Komentarze dla meme</div>
                 <div className='blueGrey darken-1 m8 s12'>
                     <CommentsList comments={props.comments} />
-                    <AddComment id={props.id} />
+                    <AddComment id={props.id} toComment={null} />
                 </div>
         </div>
     );

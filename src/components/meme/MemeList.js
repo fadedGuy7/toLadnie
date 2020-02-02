@@ -6,7 +6,7 @@ const MemeList = ({ memes }) => {
         <div className='memeList'>
             { memes && memes.map(meme => {
                 return (
-                        <Meme key={meme.id} meme={meme} />
+                        <Meme key={meme.id} meme={meme} redirect={true}/>
                 )
             }) }
         </div>

@@ -90,9 +90,9 @@ export class CreateMeme extends Component {
         
         return(
             <div className='container'>
-                <form onSubmit={this.handleSubmit} className='white'>
+                <form onSubmit={this.handleSubmit} className='blueGrey'>
                     <div className='input-field'>
-                        <TextInput placeholder='Tytuł wrzutki' id='title' onChange={this.handleChange} />
+                        <TextInput placeholder='Tytuł wrzutki' id='title' onChange={this.handleChange} className='nBlueText' />
                     </div>
                     <Select
                         onChange={this.handleChange}
@@ -116,6 +116,7 @@ export class CreateMeme extends Component {
                             outDuration: 250
                             }
                         }}
+                        className='nBlueText'
                         >
                         <option disabled value="">Typ wrzutki</option>
                         <option value='Humor'>Humor</option>
@@ -135,7 +136,8 @@ export class CreateMeme extends Component {
                             onChipAdd: this.handleChip,
                             onChipDelete: this.handleChip,
                             data: this.state.hashTag
-                        }} />
+                        }} 
+                        className='nBlueText'/>
                     </div>
                     
                     <div className='input-field'>

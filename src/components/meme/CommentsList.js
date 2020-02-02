@@ -7,13 +7,15 @@ const CommentsList = ({ comments }) => {
         return(
             comments.map(comment => {
                 return (
-                    <Comment key={comment.id} comment={comment} />
+                    <Comment key={comment.id} comment={comment} commentId={comment.id}/>
                 );
             })
-        );
+        ); 
     } else {
         return (
-            <p>Brak Komentarzy, bądź pierwszym który dorzuci swoje trzy grosze!</p>
+            <div className='noComments'>
+                Brak Komentarzy, bądź pierwszym który dorzuci swoje trzy grosze!
+            </div>
         );
     }
     

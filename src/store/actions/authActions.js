@@ -35,10 +35,8 @@ const signUp = (newUser) => {
                 firstName: newUser.firstName,
                 lastName: newUser.lastName,
                 initials: newUser.firstName[0] + newUser.lastName[0],
-                votes: {
-                    liked: [],
-                    disliked: []
-                }
+                liked: [],
+                disliked: []
             })
         }).then(() => {
             dispatch({ type: 'SIGNUP_SUCCESS' })

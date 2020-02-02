@@ -6,11 +6,13 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 
+
+
 class Dashboard extends Component {
-     render() {
+    render() {
     console.log('dashboard render');
          
-         const { memes, auth } = this.props;  // zapisujemy stala memes jako propsa z memami, w auth trzymamy info o zalogowaniu 
+         const { memes, auth } = this.props;  
          if (!auth.uid) return <Redirect to='/zaloguj' />
 
          return(
@@ -39,6 +41,9 @@ export default compose(
     connect(mapStateToProps),
     firestoreConnect([ {
         collection: 'meme' , orderBy: ['postDate', 'desc']// (1) sink from !!#
+    },
+    {
+        collection: 'meme'// (1) sink from !!#
     } ])
 )(Dashboard); 
  

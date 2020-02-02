@@ -6,64 +6,46 @@ import LikeBarMeme from './LikeBarMeme'
 
 const showUp = ( array ) => {
     let result = '';
-    array && array.map((el) => {
+    array && array.forEach((el) => {
         result += '#' + el.tag + ' '
         return result
     })
     return result;
 }
 
-const Title = (props) =>{
-    if(props.meme.id) {
-        return (
-            <Link to={'/meme/' + props.meme.id} key={'linktitle' + props.meme.id}>
-                {props.meme.title}
-            </Link> 
-        )
-    } else {
-        return (
-            <span>
-                {props.meme.title}
-            </span>
-        );
-    }
-}
-
-const Body = (props) => {
-    if(props.meme.id) {
-        return (
-            <Link to={'/meme/' + props.meme.id} key={'link' + props.meme.id}>
-                <img src={props.meme.meme} alt={props.meme.title} className='responsive-img z-depth-0 memeImg' />
-            </Link>
-        )
-    } else {
-        return (
-            <span>
-                <img src={props.meme.meme} alt={props.meme.title} className='responsive-img z-depth-0 memeImg' />
-            </span>
-        );
-    }
-}
-
 class Meme extends Component {
-
     render() {
-        const id = this.props.id ? this.props.id : this.props.meme.id;
         console.log('RENDER MEME');
         return(
             <div className='meme blueGrey text m8 s12 z-depth-1'>
                 <div className='transparent text memeTitle'>
-                    <Title {...this.props}/>
+                    {this.props.redirect ? (
+                        <Link to={'/meme/' + this.props.meme.id} key={'linktitle' + this.props.meme.id}>
+                            {this.props.meme.title}
+                        </Link>
+                    ) : (
+                        <React.Fragment>
+                            {this.props.meme.title}
+                        </React.Fragment>
+                    )}
                 </div>
                 <div className='toSides blueGrey dBrownText darken-1 memeInfo'>
                     <p className='info'>{this.props.meme.type}</p>
                     <p className='info'>{showUp(this.props.meme.hashTag)}</p>
                 </div>
                 <div className='memeContent'>
-                    <Body {...this.props}/>
+                    {this.props.redirect ? (
+                        <Link to={'/meme/' + this.props.id} key={'link' + this.props.id}>
+                            <img src={this.props.meme.meme} alt={this.props.meme.title} className='responsive-img z-depth-0 memeImg' />
+                        </Link>
+                    ) : (
+                        <React.Fragment>
+                            <img src={this.props.meme.meme} alt={this.props.meme.title} className='responsive-img z-depth-0 memeImg' />
+                        </React.Fragment>
+                    )}
                 </div> 
                  <div className='transparent underMeme'>
-                    <LikeBarMeme meme={id} likeMeme={this.props.likeMeme} dislikeMeme={this.props.dislikeMeme} />
+                    <LikeBarMeme id={this.props.id} likeMeme={this.props.likeMeme} dislikeMeme={this.props.dislikeMeme} />
                  </div>
             </div>
         );
@@ -71,6 +53,7 @@ class Meme extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
+
     return {
         likeMeme: (id) => dispatch(likeMeme(id)),
         dislikeMeme: (id) => dispatch(dislikeMeme(id))
@@ -78,9 +61,8 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state, props) => {  
-    const id = props.meme.id ? props.meme.id : props.id;
     return {
-        id: id
+        id: props.meme.id
     }
 }
 
