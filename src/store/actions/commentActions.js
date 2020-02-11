@@ -20,29 +20,3 @@ export const addComment = ( comment ) => {
         })
     }
 }
-
-export const addCommentToComment = ( comment ) => {
-    return (dispatch, getState, { getFirebase, getFirestore}) => {
-        const firestore = getFirestore();
-        const profile = getState().firebase.profile;
-        const authId = getState().firebase.auth.uid; 
-        console.log('add comment to comment : ', comment);
-
-
-
-        firestore.collection('meme').doc(comment.memeId).collection('comments').add({
-            ...comment,
-            commentTo: comment.commentId,
-            commentAuthorUid: authId,
-            commentAuthorFirstName: profile.firstName,
-            commentAuthorLastName: profile.lastName,
-            commentDate: new Date(),
-            likes: [],
-            dislikes: []
-        }).then(() => {
-            dispatch({ type: 'COMMENT_ADDED', comment})
-        }).catch((error) => {
-            dispatch({ type: 'COMMENT_ERROR', error})
-        })
-    }
-}

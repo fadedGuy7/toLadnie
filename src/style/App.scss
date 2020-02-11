@@ -1,0 +1,225 @@
+@import 'colors.scss';
+
+  
+  html {
+    min-height: 100vh;
+    background-color: #181E24;
+    color: $mainTextColor;
+  
+  }
+  
+  body {
+    font-family: sans-serif;
+    min-height: 100vh;
+  }
+  form {
+    padding: 20px;
+    margin: 1em;
+  }
+  /*
+  input[type=text]:not(.browser-default):focus:not([read-only]),
+  input[type=email]:not(.browser-default):focus:not([read-only]),
+  input[type=chips]:not(.browser-default):focus:not([read-only]),
+  input[type=password]:not(.browser-default):focus:not([read-only]),
+  textarea:focus:not([read-only]) {
+    border-color: #7B7D1E;
+    box-shadow: none;
+  }
+  */
+  .span {
+    padding: 1em;
+  }
+  
+  .loading {
+    width: 50vw;
+    margin: auto;
+  }
+  
+  .screen {
+    height: 100vh;
+  }
+  
+  /*  
+  border: rgba(8, 21, 29, 0.2) solid 1px;
+  */
+  
+  .memeList {
+    margin: 0.5rem 0 1rem 0;
+  }
+  
+  .meme {
+    border-radius: 0 0 10px 10px;
+    margin-bottom: 0.5em;
+    border: rgba(8, 21, 29, 0.5) solid 1px;
+  }
+  
+  .memeInfo {
+    border-bottom: rgba(8, 21, 29, 0.4) solid 1px;
+  }
+  
+  img {
+    border: rgba(8, 21, 29, 0.8) solid 1px;
+  }
+  
+  .memeTitle {
+    font-weight: 300;
+    font-size: 1.5em;
+    padding: 0.1em 1em 0 1em;
+    border-bottom: rgba(8, 21, 29, 0.2) solid 1px;
+  }
+  
+  .adTitle {
+    font-size: 1.5em;
+    font-weight: 300;
+    padding: 0 0.5em;
+  }
+  
+  .toSides {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .info {
+    padding: 0.1em;
+    margin: 0px 1em;
+    font: 0.8em;
+    font-style: italic;
+  }
+  
+  .memeContent {
+    text-align: center;
+    padding: 0;
+  }
+  .underMeme {
+    background-color: transparent;
+  }
+  .memeImg {
+    max-width: 100%;
+  }
+  
+  .commentsContainer {
+    border-radius: 0 0 10px 10px;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    border: rgba(8, 21, 29, 0.5) solid 1px;
+  }
+  
+  .commentTitle {
+    font-weight: 300;
+    font-size: 1.2em;
+    padding: 0em 1em 0 1em;
+    border-bottom: rgba(8, 21, 29, 0.2) solid 1px;
+  }
+  
+  .commentForm {
+    padding: 0 3em 0 1em;
+    width: 100%
+  }
+  
+  .comment {
+    padding: 0.3em 1em 0.5em 1.4em;
+    font-size: .9em;
+    width: 100%;
+  }
+  .flex {
+    display: flex;
+  }
+  .comments {
+    padding: 0.5em 1em 0;
+    margin: .8em;
+    border-bottom: rgba(8, 21, 29, 0.2) solid 1px;
+    transition: all 0.5s ease 0s;
+    overflow: hidden;
+    background-color: $mainBgColor;
+  }
+  .comments:hover {
+    opacity: 1;
+  }
+  
+  .noComments {
+    padding: 0.5em 1em 0;
+    margin: .8em;
+  }
+  .commentExtras {
+  
+  }
+  .visible {
+    height: 60px;
+    transition: all 0.5s ease 0s;
+  }
+  .invisible {
+    height: 0px;
+    transition: all 0.5s ease 0s;
+  
+  }
+  
+  .test {
+    background-color: #ec407a;
+  }
+  
+  .time{
+    display: flex;
+    font-size: .7em !important;
+    line-height: 2.0em;
+    align-items: flex-end;
+  }
+  
+  .commentList {
+  }
+  
+  .likeButtonsContainer {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .likeButtons {
+    cursor: pointer;
+    border: rgba(8, 21, 29, 1) solid 2px;
+    margin: 0 0 0.5em;
+    padding: 0em;
+    width: 3em;
+    transition: all 0.5s ease 0s;
+    font-size: 1em;
+    text-align: center;
+  }
+  
+  .like {
+    border-radius: 10px 0 0 10px;
+  }
+  .liked {
+    color: $like !important;
+    border-color: $like !important;
+  }
+  .likedDislike {
+    color: $dislike !important;
+  }
+  .like:hover {
+    color: $like !important;
+    border-color: $like !important;
+    border-radius: 0;
+  }
+  .dislike {
+    border-radius: 0 10px 10px 0;
+  }
+  .disliked {
+    color: $dislike !important;
+    border-color: $dislike !important;
+  }
+  .dislikedLike {
+    color: $like !important;
+  }
+  .dislike:hover {
+    color: $dislike !important;
+    border-color: $dislike !important;
+    border-radius: 0;
+  }
+  .search {
+    display: flex;
+  }
+  .search input {
+    width: 15em;
+  }
+  .navContainer {
+    display: flex;
+  }

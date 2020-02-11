@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { TextInput } from 'react-materialize'
 import { addComment } from '../../store/actions/commentActions'
 import { connect } from 'react-redux'
 
 
-export class AddComment extends Component {
+export class AddComment extends React.Component {
     state = {
         comment: '',
         memeId: this.props.id,
@@ -19,15 +19,17 @@ export class AddComment extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log('state', this.props)
-        this.props.addComment(this.state)
+        console.log('state before debug', this.state);
+        console.log('props before debug', this.props);
+        this.props.addComment(this.state);
         this.setState({
             comment: ''
         })
     }
+    
     render() {
         return(
-            <form onSubmit={this.handleSubmit} className='commentForm s12 m12 l12 xl12'>
+            <form onSubmit={this.handleSubmit} className='commentForm s12 m12'>
                 <TextInput onChange={this.handleChange} placeholder='HAHA Kurła dobre..' 
                            value={this.state.comment} id='comment' className='nBlueText'/>
                 <button className='btn dBrown z-depth-1'>Dodaj komentarz</button>

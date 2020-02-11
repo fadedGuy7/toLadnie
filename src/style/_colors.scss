@@ -1,0 +1,76 @@
+/*   VARIBLES    */
+$mainTextColor: #DBFFFF;
+$secondaryTextColor: #86877E;
+$mainBgColor: rgba(25, 42, 54, 1);
+$secondaryBgColor: #1E3342;
+
+$like: #0A733B;
+$dislike: #730B00;
+
+
+/****************************
+########   DEFINED   #######
+*************;*************/
+/* .darkBlue {
+    background-color: #19354A;
+  } */
+  .blueGrey {
+    background-color: $mainBgColor;
+  }
+ /* 
+  .blueGrey.lighten-1 {
+    background-color: #405463;
+  } 
+  .blueGrey.lighten-2 {
+    background-color: #607F96;
+  }
+  */
+  .blueGrey.darken-1 {
+    background-color: $secondaryBgColor;
+  }
+  .blueGrey.darken-2 {
+    background-color: #222C33;
+  }
+  .dYellow {
+    background-color: #95962C;
+  }
+  .dYellow.darken-1 {
+    background-color: #7B7D1E;
+  }
+  .dScarlet {
+    background-color: #572726;
+  }
+  .dBrownText {
+    color: #DEC195 !important;
+  }
+  .dBrown {
+    background-color: #7B7D1E;
+    
+    &:hover {
+        background-color: rgb(92, 94, 23);
+      }
+}
+  
+  .dBrownText.lighten-1 {
+    color: #9E896A !important;
+  }
+  .dBrownText.darken-1 {
+    color: $secondaryTextColor !important;
+  }
+  
+  .dYellowText.darken-1 {
+    color: #7B7D1E !important;
+  }
+  .nBlueText {
+    color: #95BEDE !important;
+  }
+  .text {
+    color: $mainTextColor !important;
+
+    &:visited {
+        color: $mainTextColor !important;
+        }
+  }
+
+  
+  
