@@ -19,14 +19,13 @@ export class AddComment extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log('state before debug', this.state);
-        console.log('props before debug', this.props);
         this.props.addComment(this.state);
         this.setState({
             comment: ''
         })
+        this.props._mkVis('');
     }
-    
+
     render() {
         return(
             <form onSubmit={this.handleSubmit} className='commentForm s12 m12'>

@@ -107,7 +107,7 @@
   .commentTitle {
     font-weight: 300;
     font-size: 1.2em;
-    padding: 0em 1em 0 1em;
+    padding: .3em 1em 0 1em;
     border-bottom: rgba(8, 21, 29, 0.2) solid 1px;
   }
   
@@ -141,16 +141,18 @@
     margin: .8em;
   }
   .commentExtras {
-  
+    margin: 0 1.2em;
   }
   .visible {
     height: 60px;
     transition: all 0.5s ease 0s;
+    overflow: hidden;
+
   }
   .invisible {
     height: 0px;
     transition: all 0.5s ease 0s;
-  
+    overflow: hidden;
   }
   
   .test {
