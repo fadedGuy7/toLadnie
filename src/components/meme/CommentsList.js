@@ -1,20 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Comment from './Comment'
 
-const CommentsList = ({ comments }) => {
-    const [vis, setVis] = useState('');
-    const _mkVis = ( id ) => {
-        vis === id ? setVis('') : setVis(id);
-        console.log('setVis, vis = ', vis, id)
-    }
+const CommentsList = ({ _mkVis, visible, comments }) => {
 
-    console.log('CommentsList render');
+    console.log('CommentsList render', comments, visible);
 
     if(comments && comments.length > 0) {
         return(
             comments.filter(comment => comment.toComment === null).map(comment => {
                 return (
-                    <Comment key={comment.id} comment={comment} comments={comments} visible={vis} _mkVis={_mkVis}/>
+                    <Comment key={comment.id} comment={comment} comments={comments} visible={visible} _mkVis={_mkVis}/>
                 );
             })
         ); 

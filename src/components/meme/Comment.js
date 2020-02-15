@@ -11,7 +11,6 @@ class Comment extends React.Component {
     }
     render() {
         let commentTo = this.props.comments ? this.props.comments.filter(val => val.toComment === this.props.comment.id) : null;
-        console.log('test dla ', this.props.comment.comment, this.props.comments);
         return(
             <div className='blueGrey comments z-depth-1'>
                 <div className='toSides commentTitle'>
