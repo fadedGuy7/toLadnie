@@ -1,6 +1,14 @@
   /* FORM AND INPUT STYLES */
+  //        MAIN COLORS        //
+
+@mixin basicTextColor ($opacity) {
+    color: rgba(222, 193, 149, $opacity); 
+}
+
+
+
   form {
-    background-color: pink;
+    background-color:transparent;
     width: 40em;
     padding: 0.5em 0.2em .9em;
     text-align: center;
@@ -9,181 +17,120 @@
   .inputArea {
     position: relative;
     text-align: center;
-    width: 20em;
+    width: 80%;
     margin: .7em .5em .7em;
     margin-left: auto;
     margin-right: auto;
 
-  }
-  input 				{
-    font-size:1em;
-    padding:.6em .4em .3em 5px;
-    display:block;
-    width:20em;
-    border:none;
-    border-bottom:1px solid #7B7D1E;
-    background-color: transparent;
+        input {
+            font-size:1em;
+            padding:.6em .4em .3em 5px;
+            display:block;
+            border:none;
+            border-bottom:1px solid #7B7D1E;
+            background-color: transparent;
+            width: 100%;
+
+        }
+        input:focus ~ label, input:valid ~ label {
+            top: -.7em;
+            font-size: .7em;
+            @include basicTextColor(0.521);
+        }
+
+        
+        /* FORM LABELS */
 
 
-  }
-  input:focus ~ label, input:valid ~ label {
-    top: -.5em;
-    font-size: .7em;
-    color: rgba(222, 193, 149, 0.521);
+        label {
+            @include basicTextColor(0.678);
+            font-size:1em;
+            font-weight:normal;
+            position:absolute;
+            pointer-events:none;
+            left:5px;
+            top:.5em;
+            transition:0.4s ease-in-out all; 
+            -moz-transition:0.4s ease-in-out all; 
+            -webkit-transition:0.4s ease-in-out all;
+        }
+
+        input:focus	{ 
+            outline:none; 
+        }
+        input:invalid {
+
+        }
+        
+        input:required:invalid {
+            outline: none;
+            box-shadow: none;
+        }
+
+        /* ANIMATED BAR UNDER INPUTS */
+
+        .bar 	{ 
+            position:relative; 
+            display:block;
+            width: 100%;
+        }
+        .bar:before, .bar:after 	{
+            content:'';
+            height:1px; 
+            width:0px;  
+            bottom:1px; 
+            opacity: .7;
+            position: absolute;
+            background-color:#7B7D1E; 
+            -webkit-box-shadow: 0px 0px 2px 0px rgba(222,193,149,.5);
+            -moz-box-shadow: 0px 0px 2px 0px rgba(222,193,149,.5);
+            box-shadow: 0px 0px 2px 0px rgba(222,193,149,.5);
+            transition:0.4s ease-in-out all; 
+            -moz-transition:0.4s ease-in-out all; 
+            -webkit-transition:0.4s ease-in-out all;
+        }
+            .bar:before {
+            left:50%;
+        }
+            .bar:after {
+            right:50%; 
+        }
+        
+        input:focus ~ .bar:before, input:focus ~ .bar:after {
+            width:50%;
+        }
   }
 
-  
-  /* FORM LABELS */
 
 
-  label {
-    color:rgba(222, 193, 149, 0.678); 
-    font-size:1em;
-    font-weight:normal;
-    position:absolute;
-    pointer-events:none;
-    left:5px;
-    top:10px;
-    transition:0.4s ease-in-out all; 
-    -moz-transition:0.4s ease-in-out all; 
-    -webkit-transition:0.4s ease-in-out all;
-  }
 
-  input:focus	{ outline:none; }
-  input:invalid {
-    border-bottom:1px solid salmon;
-  }
-  
-  input:required:invalid {
-    outline: none;
-    box-shadow: none;
-  }
 
-  /* ANIMATED BAR UNDER INPUTS */
-
-  .bar 	{ 
-    position:relative; display:block; width:20.8em; 
-  }
-  .bar:before, .bar:after 	{
-    content:'';
-    height:2px; 
-    width:0;  
-    bottom:0px; 
-    opacity: .5;
-    position: absolute;
-    background:#7B7D1E; 
-    -webkit-box-shadow: 0px 0px 2px 0px rgba(222,193,149,1);
-    -moz-box-shadow: 0px 0px 2px 0px rgba(222,193,149,1);
-    box-shadow: 0px 0px 2px 0px rgba(222,193,149,1);
-    transition:0.4s ease-in-out all; 
-    -moz-transition:0.4s ease-in-out all; 
-    -webkit-transition:0.4s ease-in-out all;
-  }
-    .bar:before {
-    left:50%;
-  }
-    .bar:after {
-    right:50%; 
-  }
-  
-  input:focus ~ .bar:before, input:focus ~ .bar:after {
-    width:50%;
-  }
-  
 /*      FORM BUTTONS      */
-button {
-  background-color: transparent;
-  font-size: 1em;
-  color:rgba(222, 193, 149, 0.678); 
-  border: 1px solid #7B7D1E;
-  padding: .5em 1em;
-  border-radius: .1em;
-  margin: .5em;
-  transition:0.2s ease-in-out all; 
-  -moz-transition:0.2s ease-in-out all; 
-  -webkit-transition:0.2s ease-in-out all;
-}
-button:hover {
-  color: rgba(222,193,149,1);
-  -webkit-box-shadow: 0px 0px 2px 0px rgba(222,193,149,1);
-  -moz-box-shadow: 0px 0px 2px 0px rgba(222,193,149,1);
-  box-shadow: 0px 0px 3px 1px rgba(222,193,149,1);
-} 
-
-/*      RADIO INPUTS      */
-
-.section input[type="radio"]{
-  display: none;
-}
-.container label {
-  position: relative;
-}
-.container span::before, .container span::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
-.container span.radio:hover {
-  cursor: pointer;
-}
-
-.container span.radio::before {
-  left: -52px;
-  width: 45px;
-  height: 25px;
-  background-color: thistle;
-  border-radius: 25%;
-}
+    .customButton {
+        background-color: transparent;
+        font-size: 1em; 
+        @include basicTextColor(.678);
+        border: 1px solid #7B7D1E;
+        padding: .5em 1em;
+        border-radius: .1em;
+        margin: .5em;
+        transition:0.2s ease-in-out all; 
+        -moz-transition:0.2s ease-in-out all; 
+        -webkit-transition:0.2s ease-in-out all;
+        }
+        button:hover {
+        @include basicTextColor(1);
+        -webkit-box-shadow: 0px 0px 2px 0px rgba(222,193,149,1);
+        -moz-box-shadow: 0px 0px 2px 0px rgba(222,193,149,1);
+        box-shadow: 0px 0px 3px 1px rgba(222,193,149,1);
+    } 
 
 /*    SELECT     */
-/*
-.select {
-	display: block;
-	font-size: 16px;
-  font-family: 'Montserrat', sans-serif;
-	font-weight: 700;
-	color: rgba(222, 193, 149, 0.678);
-	line-height: 1.3em;
-	padding: .6em 1.4em .5em .8em;
-	width: 100%;
-	max-width: 100%;
-	box-sizing: border-box;
-	margin: 0;
-	border: 1px solid #7B7D1E;
-	box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
-	border-radius: .1em;
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	appearance: none;
-	background-color: #1E3342;
-}
-.select::-ms-expand {
-	display: none;
-}
-.select:hover {
-  border-color: rgb(146, 148, 34);
-	padding: .6em 1.4em .5em .8em;
-}
-.select:focus {
-  border-color: #aaa;
-	padding: .6em 1.4em .5em .8em;
-  -webkit-box-shadow: 0px 0px 2px 0px rgba(222,193,149,1);
-  -moz-box-shadow: 0px 0px 2px 0px rgba(222,193,149,1);
-  box-shadow: 0px 0px 3px 1px rgba(222,193,149,1);
-	color: rgba(222, 193, 149, 0.678);
-	outline: none;
-}
-.select option {
-  color: pink;
-  height: 2em;
-  font-weight:normal;
-}
-*/
 
- .selectDiv {
+
+ .selectContainer {
     position: relative;
+    @include basicTextColor(.678);
   }
   
   .selectDiv select {
@@ -191,14 +138,18 @@ button:hover {
   }
   
   .selectSelected {
-    background-color: pink;
+    background-color: $secondaryBgColor;
+    @include basicTextColor(1);
+    box-shadow: 0px 0px 1px 0px rgba(0,0,0,.2);
+
+
   }
   
   /* Style the arrow inside the select element: */
   .selectSelected:after {
     position: absolute;
     content: "";
-    top: 14px;
+    top: 18px;
     right: 10px;
     width: 0;
     height: 0;
@@ -207,14 +158,14 @@ button:hover {
   }
   
   /* Point the arrow upwards when the select box is open (active): */
-  .selectSelected.select-arrow-active:after {
+  .selectSelected.selectArrowDown:after {
     border-color: transparent transparent #fff transparent;
-    top: 7px;
+    top: 11px;
+
   }
   
   /* style the items (options), including the selected item: */
   .selectItems div,.selectSelected {
-    color: #ffffff;
     padding: 8px 16px;
     border: 1px solid transparent;
     border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
@@ -224,11 +175,15 @@ button:hover {
   /* Style items (options): */
   .selectItems {
     position: absolute;
-    background-color: DodgerBlue;
+    background-color: $secondaryBgColor;
     top: 100%;
     left: 0;
     right: 0;
     z-index: 99;
+    box-shadow: 0px 0px 1px 0px rgba(0,0,0,.2);
+
+  //  border: 1px solid transparent;
+    //border-color: transparent rgba(0,0,0,.5) rgba(0,0,0,.5) rgba(0,0,0,.5);
   }
   
   /* Hide the items when the select box is closed: */
@@ -236,16 +191,65 @@ button:hover {
     display: none;
   }
   
-  .selectItems div:hover, .same-as-selected {
+  .selectItems div:hover, .darken {
     background-color: rgba(0, 0, 0, 0.1);
   } 
 
-/* romove previous styles
-.selectCustom {
-        all: initial;
-        * {
-          all: unset;
-        }
-      
-}
-*/
+  /*    INPUT FILE      */
+
+  .inputFile {
+    position: relative;
+    width: 30em;
+    margin: auto;
+  }
+
+  .fakeFile {
+    display: flex;
+  }
+
+  .file {
+    z-index: 2;
+    opacity: .0;
+    left: 0%;
+    position: absolute;
+    background-color: palegreen;
+    width: 100%;
+    height: 100%;
+  }
+
+  .fileRight {
+      width: 100%;
+      padding: 0 1.2em 0 .4em;
+      position: relative;
+      text-align: center;
+      width: 20em;
+      margin: .7em .5em .7em;
+  }
+  .fileLeft {
+
+  }
+
+  .fileButton {
+        background-color: transparent;
+        font-size: 1em; 
+        @include basicTextColor(.678);
+        border: 1px solid #7B7D1E;
+        padding: .5em 1em;
+        border-radius: .1em;
+        margin: .5em 0;
+        transition:0.2s ease-in-out all; 
+        -moz-transition:0.2s ease-in-out all; 
+        -webkit-transition:0.2s ease-in-out all;
+        white-space: nowrap;
+    }
+
+  .fileInput {
+        color: rgba(222, 193, 149, .678)!important;
+        padding: .4em 0;
+        display: block;
+        border: 1px solid transparent;
+        border-bottom:1px solid #7B7D1E !important;
+        background-color: transparent;
+        width: 100%;
+        
+    }

@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { createMeme } from '../../store/actions/memeActions';
 import { Redirect } from 'react-router-dom'
 import M from 'materialize-css';
-import { Chip, TextInput, Icon, Select, Col, Preloader } from 'react-materialize'
+import { Chip, TextInput, Icon, Col, Preloader } from 'react-materialize'
 import '../../index.css';
 import $ from 'jquery'
 import { getFirebase } from 'react-redux-firebase';
+import { Select, InputText, InputFile } from '../sideComponents/form/Form'
+
 import 'firebase/storage';
 
 export class CreateMeme extends Component {
@@ -19,6 +21,7 @@ export class CreateMeme extends Component {
     }
 
     handleChange = (e) => {
+        console.log('tyrtrtrtr', e);
         if(e.target.type === 'file') {
             let firebase = getFirebase();
             const storageRef = firebase.storage().ref();
@@ -87,41 +90,17 @@ export class CreateMeme extends Component {
             }
             return false
         }
+
         
         return(
             <div className='container'>
                 <form onSubmit={this.handleSubmit} className='blueGrey'>
-                    <div className='input-field'>
-                        <TextInput placeholder='Tytuł wrzutki' id='title' onChange={this.handleChange} className='nBlueText' />
-                    </div>
-                    <Select
-                        onChange={this.handleChange}
-                        value={this.state.type}
-                        id='type'
-                        options={{
-                            classes: '',
-                            dropdownOptions: {
-                            alignment: 'left',
-                            autoTrigger: true,
-                            closeOnClick: true,
-                            constrainWidth: true,
-                            container: null,
-                            coverTrigger: true,
-                            hover: false,
-                            inDuration: 150,
-                            onCloseEnd: null,
-                            onCloseStart: null,
-                            onOpenEnd: null,
-                            onOpenStart: null,
-                            outDuration: 250
-                            }
-                        }}
-                        className='nBlueText'
-                        >
-                        <option disabled value="">Typ wrzutki</option>
-                        <option value='Humor'>Humor</option>
-                        <option value='Ciekawostka'>Ciekawostka</option>
-                        <option value='Historia'>Historyczne</option>
+                    <InputText id='title' label='Tytuł wrzutki' onChange={this.handleChange} value={this.state.title} />
+                    <Select handleChange={this.handleChange} value={this.state.type} id='type' >
+                        <option value=''>Typ wrzutki</option>
+                        <option value='humor'>Humor</option>
+                        <option value='ciekawostka'>Ciekawostka</option>
+                        <option value='historyczne'>Historyczne</option>
                     </Select>
 
                     <div className='input-field'>

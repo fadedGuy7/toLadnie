@@ -15,6 +15,10 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+import LogRocket from 'logrocket';
+LogRocket.init('ho6nb2/toladnie');
+
+
 const fbConfig = {
     apiKey: "AIzaSyBstaYLJHJL11SjnDlX3kdrGDPRU7-lBSU",
     authDomain: "toladnie-86b03.firebaseapp.com",
