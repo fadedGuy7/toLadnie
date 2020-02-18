@@ -120,10 +120,12 @@ export class CreateMeme extends Component {
                     </div>
                     
                     <div className='input-field'>
-                        <TextInput type='file' label='Zapodaj mema' id='meme' onChange={this.handleChange} ref={this.setRef} />   {/* setting up reference to this place */}
+                        {/*<TextInput type='file' label='Zapodaj mema' id='meme' onChange={this.handleChange} ref={this.setRef} />*/}
+                        <InputFile label='Zapodaj mema' id='meme' onChange={this.handleChange} ref={this.setRef}/>
+
                         <LoadingStatus />
                     </div>
-                    <button className='btn pink z-depth-1'>Dodaj</button>
+                    <button className='customButton'>Dodaj</button>
 
                 </form>
             </div>

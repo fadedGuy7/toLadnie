@@ -15,8 +15,6 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-import LogRocket from 'logrocket';
-LogRocket.init('ho6nb2/toladnie');
 
 
 const fbConfig = {

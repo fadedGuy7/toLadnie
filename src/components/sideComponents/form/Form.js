@@ -1,9 +1,13 @@
 import React from 'react'
+import { fireEvent } from '@testing-library/dom'
+
   ///////////////////////////////////////////////////////
  ///                 SELECT BOX                      ///
 ///////////////////////////////////////////////////////
 
+
 class Select extends React.Component {
+    
     componentDidMount() {
 //###        const handChange = (val) => {
   //          this.props.handleChange(val);
@@ -25,19 +29,22 @@ class Select extends React.Component {
                 option.innerHTML = selectedElem[j].text;
                 option.addEventListener('click', function(event) {
                     let select = this.parentNode.parentNode.getElementsByTagName("select")[0];
+                    select.onChange = ( event ) => console.log('klikniete', event)
                     let selected = this.parentNode.previousSibling;  // get sibling div ( what act as selected )
                     for (let i = 0; i < select.length; i++) {
                     if (select.options[i].innerHTML === this.innerHTML) {
                         select.selectedIndex = i;       // setup .selectedIndex value for future use
                         //### handChange(select[i].value);
+                        console.log(select)
 
-                        if ("createEvent" in document) {
-                            var evt = document.createEvent("HTMLEvents");
-                            evt.initEvent("change", false, true);
-                            selectedElem.dispatchEvent(evt);
-                        }
-                        else selectedElem.fireEvent("onChange");
-
+                        /*
+                            Fire focus event on the ReactSelect .react-select input element.
+                            Fire a mouseDown event on the .react-select__control element
+                            Fire a click on the option element that we wanted
+                        */
+                        fireEvent.focus(select);
+                        fireEvent.mouseDown(select);
+                        fireEvent.click(select[i]);
 
                         selected.innerHTML = this.innerHTML;
                         let clicked = this.parentNode.getElementsByClassName("darken"); 
@@ -108,10 +115,16 @@ const InputText = (props) => {
     )
 }
 
+
+  ///////////////////////////////////////////////////////
+ ///                 INPUT FILE                      ///
+///////////////////////////////////////////////////////
+
+
 class InputFile extends React.Component {
     componentDidMount() {
         var W3CDOM = (document.createElement && document.getElementsByTagName);  // check if browser support W3C DOM
-
+        let label = this.props.label;
         function initFileUploads() {
             if (!W3CDOM) return;
             var fakeFileUpload = document.createElement('div');
@@ -131,7 +144,7 @@ class InputFile extends React.Component {
 
             var button = document.createElement('div');
             button.className = 'fileButton';
-            button.innerHTML='Wybierz plik';
+            button.innerHTML = label;
             left.appendChild(button);
             
             var x = document.getElementsByTagName('input');
@@ -156,7 +169,7 @@ class InputFile extends React.Component {
 
         return(
             <div className="inputFile">
-	            <input type="file" className="file" />
+	            <input type="file" onChange={this.props.onChange} id={this.props.id} value={this.props.value} className="file" ref={this.props.ref}/>
             </div> 
         )
     }
