@@ -37,14 +37,6 @@ class Select extends React.Component {
                         //### handChange(select[i].value);
                         console.log(select)
 
-                        /*
-                            Fire focus event on the ReactSelect .react-select input element.
-                            Fire a mouseDown event on the .react-select__control element
-                            Fire a click on the option element that we wanted
-                        */
-                        fireEvent.focus(select);
-                        fireEvent.mouseDown(select);
-                        fireEvent.click(select[i]);
 
                         selected.innerHTML = this.innerHTML;
                         let clicked = this.parentNode.getElementsByClassName("darken"); 
